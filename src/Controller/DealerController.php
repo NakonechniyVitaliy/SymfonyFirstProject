@@ -57,6 +57,7 @@ class DealerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($dealer);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_dealer_index', [], Response::HTTP_SEE_OTHER);

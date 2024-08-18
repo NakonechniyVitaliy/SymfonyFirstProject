@@ -15,11 +15,7 @@ class DealerType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('DealerWorkHours', EntityType::class, [
-                'class' => DealerWorkHours::class,
-                'choice_label' => 'dealer_title',
-
-            ]);
+            ->add('dealerWorkHours', DealerWorkHoursType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

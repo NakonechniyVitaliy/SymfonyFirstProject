@@ -17,7 +17,7 @@ class Dealer
     private ?string $Name = null;
 
 
-    #[ORM\OneToOne(targetEntity: DealerWorkHours::class)]
+    #[ORM\OneToOne(targetEntity: DealerWorkHours::class, cascade: ["persist"])]
     #[ORM\JoinColumn(name: 'work_hour_id', referencedColumnName: 'id')]
     private DealerWorkHours|null $dealerWorkHours = null;
 

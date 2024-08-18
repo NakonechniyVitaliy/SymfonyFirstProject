@@ -17,19 +17,6 @@ class DealerWorkHours
     private ?string $monday_open = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $dealer_title = null;
-
-    public function getDealerTitle(): ?string
-    {
-        return $this->dealer_title;
-    }
-
-    public function setDealerTitle(?string $dealer_title): void
-    {
-        $this->dealer_title = $dealer_title;
-    }
-
-    #[ORM\Column(length: 255)]
     private ?string $monday_close = null;
 
     #[ORM\Column(length: 255)]
