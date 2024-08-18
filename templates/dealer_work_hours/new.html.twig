@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DealerWorkHours{% endblock %}
+
+{% block body %}
+    <h1>Create new DealerWorkHours</h1>
+
+    {{ include('dealer_work_hours/_form.html.twig') }}
+
+    <a href="{{ path('app_dealer_work_hours_index') }}">back to list</a>
+{% endblock %}

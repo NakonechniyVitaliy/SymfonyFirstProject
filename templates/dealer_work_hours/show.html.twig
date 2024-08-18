@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealerWorkHours{% endblock %}
+
+{% block body %}
+    <h1>DealerWorkHours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dealer_work_hour.id }}</td>
+            </tr>
+            <tr>
+                <th>Dealer</th>
+                <td>{{ dealer_work_hour.dealerTitle }}</td>
+            </tr>
+            <tr>
+                <th>Monday_open</th>
+                <td>{{ dealer_work_hour.mondayOpen }}</td>
+            </tr>
+            <tr>
+                <th>Monday_close</th>
+                <td>{{ dealer_work_hour.mondayClose }}</td>
+            </tr>
+            <tr>
+                <th>Tuesday_open</th>
+                <td>{{ dealer_work_hour.tuesdayOpen }}</td>
+            </tr>
+            <tr>
+                <th>Tueday_close</th>
+                <td>{{ dealer_work_hour.tuedayClose }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dealer_work_hours_index') }}">back to list</a>
+
+    <a href="{{ path('app_dealer_work_hours_edit', {'id': dealer_work_hour.id}) }}">edit</a>
+
+    {{ include('dealer_work_hours/_delete_form.html.twig') }}
+{% endblock %}

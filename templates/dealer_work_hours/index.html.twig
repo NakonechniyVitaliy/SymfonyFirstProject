@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealerWorkHours index{% endblock %}
+
+{% block body %}
+    <h1>DealerWorkHours index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Monday_open</th>
+                <th>Monday_close</th>
+                <th>Tuesday_open</th>
+                <th>Tueday_close</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dealer_work_hour in dealer_work_hours %}
+            <tr>
+                <td>{{ dealer_work_hour.id }}</td>
+                <td>{{ dealer_work_hour.mondayOpen }}</td>
+                <td>{{ dealer_work_hour.mondayClose }}</td>
+                <td>{{ dealer_work_hour.tuesdayOpen }}</td>
+                <td>{{ dealer_work_hour.tuedayClose }}</td>
+                <td>
+                    <a href="{{ path('app_dealer_work_hours_show', {'id': dealer_work_hour.id}) }}">show</a>
+                    <a href="{{ path('app_dealer_work_hours_edit', {'id': dealer_work_hour.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dealer_work_hours_new') }}">Create new</a>
+{% endblock %}

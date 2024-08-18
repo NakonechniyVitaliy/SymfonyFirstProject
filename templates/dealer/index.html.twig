@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dealer index{% endblock %}
+
+{% block body %}
+    <h1>Dealer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dealer in dealers %}
+            <tr>
+                <td>{{ dealer.id }}</td>
+                <td>{{ dealer.Name }}</td>
+                <td>
+                    <a href="{{ path('app_dealer_show', {'id': dealer.id}) }}">show</a>
+                    <a href="{{ path('app_dealer_edit', {'id': dealer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dealer_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DealerWorkHours{% endblock %}
+
+{% block body %}
+    <h1>Edit DealerWorkHours</h1>
+
+    {{ include('dealer_work_hours/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_dealer_work_hours_index') }}">back to list</a>
+
+    {{ include('dealer_work_hours/_delete_form.html.twig') }}
+{% endblock %}
