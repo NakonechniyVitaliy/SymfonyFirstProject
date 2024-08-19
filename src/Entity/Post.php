@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +25,30 @@ class Post
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
     private Category|null $category = null;
+
+    #[ORM\JoinTable(name: 'tags_to_post')]
+    #[ORM\JoinColumn(name: 'post_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'tag_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
+    private Collection $tags;
+
+    public function addTag(Tag $tag): void
+    {
+        $this->tags[] = $tag;
+    }
+
+    public function __construct() {
+        $this->tags = new ArrayCollection();
+    }
+    public function getTags(): ArrayCollection
+    {
+        return $this->tags;
+    }
+
+    public function setTags(ArrayCollection $tags): void
+    {
+        $this->tags = $tags;
+    }
 
     public function getCategory(): ?Category
     {
