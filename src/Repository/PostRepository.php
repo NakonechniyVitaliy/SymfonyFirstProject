@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Filter\PostFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,16 @@ class PostRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    public function findByFilter(PostFilter $postFilter)
+    {
+        $blogs = $this->createQueryBuilder('p');
+        $blogs
+            ->andWhere('p.title LIKE :title')
+            ->setParameter('title', '%' . $postFilter->getTitle() . '%');
+
+        return $blogs->getQuery()->getResult();
     }
 
     //    /**

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Filter\PostFilter;
+use App\Form\PostFilterType;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,10 +17,16 @@ use Symfony\Component\Routing\Attribute\Route;
 class PostController extends AbstractController
 {
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
-    public function index(PostRepository $postRepository): Response
+    public function index(Request $request, PostRepository $postRepository): Response
     {
+        $postFilter = (new PostFilter());
+        $postFilterForm = $this->createForm(PostFilterType::class, $postFilter);
+        $postFilterForm->handleRequest($request);
+
+
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $postRepository->findByFilter($postFilter),
+            'postFilterTypeForm' => $postFilterForm,
         ]);
     }
 
